@@ -1,3 +1,17 @@
+# Copy files directly from repo
+def copy_from_repo(filename, options = {})
+  repo = 'https://raw.github.com/theorenck/rails_template/master'
+  repo = options[:repo] unless options[:repo].nil?
+  source_filename = filename
+  destination_filename = filename
+  begin
+    remove_file destination_filename
+    get repo + source_filename, destination_filename
+  rescue OpenURI::HTTPError
+    say "Unable to obtain #{source_filename} from the repo #{repo}"
+  end
+end
+
 # Remove sqlite3 as default database adapter
 gsub_file 'Gemfile', /gem 'sqlite3'\n/, ''
 
@@ -29,17 +43,3 @@ copy_from_repo '/app/presenters/base_presenter.rb'
 copy_from_repo '/app/validators/cpf_validator.rb'
 copy_from_repo '/app/validators/cnpj_validator.rb'
 copy_from_repo '/app/validators/email_validator.rb'
-
-# Copy files directly from repo
-def copy_from_repo(filename, options = {})
-  repo = 'https://raw.github.com/theorenck/rails_template/master'
-  repo = options[:repo] unless options[:repo].nil?
-  source_filename = filename
-  destination_filename = filename
-  begin
-    remove_file destination_filename
-    get repo + source_filename, destination_filename
-  rescue OpenURI::HTTPError
-    say "Unable to obtain #{source_filename} from the repo #{repo}"
-  end
-end
