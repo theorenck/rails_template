@@ -33,36 +33,29 @@ def copy_from_repo(filename, options = {})
   end
 end
 
-# Run after bundle execution
-after_bundler do
+# Add a module for CPF/CNPJ calculation
+copy_from_repo 'lib/pessoa_utils.rb'
 
-  # Add a module for CPF/CNPJ calculation
-  copy_from_repo 'lib/pessoa_utils.rb'
+# Add a presenter base class
+copy_from_repo 'app/presenters/base_presenter.rb'
 
-  # Add a presenter base class
-  copy_from_repo 'app/presenters/base_presenter.rb'
+# Add CPF,CNPJ and Email validators
+copy_from_repo 'app/validators/cpf_validator.rb'
+copy_from_repo 'app/validators/cnpj_validator.rb'
+copy_from_repo 'app/validators/email_validator.rb'
 
-  # Add CPF,CNPJ and Email validators
-  copy_from_repo 'app/validators/cpf_validator.rb'
-  copy_from_repo 'app/validators/cnpj_validator.rb'
-  copy_from_repo 'app/validators/email_validator.rb'
-
-  # Configure postgresql database
-  copy_from_repo 'config/database.yml'
-  begin
-    say "Creating a user named '#{app_name}' for PostgreSQL"
-    gsub_file "config/database.yml", /database: myapp_development/, "database: #{app_name}_development"
-    gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
-    gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
-  rescue StandardError
-    raise "unable to create database configuration for PostgreSQL"
-  end
+# Configure postgresql database
+copy_from_repo 'config/database.yml'
+begin
+  say "Creating a user named '#{app_name}' for PostgreSQL"
+  gsub_file "config/database.yml", /database: myapp_development/, "database: #{app_name}_development"
+  gsub_file "config/database.yml", /database: myapp_test/,        "database: #{app_name}_test"
+  gsub_file "config/database.yml", /database: myapp_production/,  "database: #{app_name}_production"
+rescue StandardError
+  raise "unable to create database configuration for PostgreSQL"
 end
 
-# Run at the end of the template
-after_everything do
-  # Initialize git repo, add and commit
-  git :init
-  git add: %Q{ --all }
-  git commit: %Q{ -m 'Initial commit' }
-end
+# Initialize git repo, add and commit
+git :init
+git add: %Q{ --all }
+git commit: %Q{ -m 'Initial commit' }
