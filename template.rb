@@ -1,6 +1,6 @@
 # Copy files directly from repo
 def copy_from_repo(filename, options = {})
-  repo = 'https://raw.github.com/theorenck/rails_template/master'
+  repo = 'https://raw.github.com/theorenck/rails_template/master/'
   repo = options[:repo] unless options[:repo].nil?
   source_filename = filename
   destination_filename = filename
@@ -34,12 +34,12 @@ gem 'font-awesome-sass', '~> 4.1.0'
 gem 'rails_12factor', group: :production
 
 # Add a module for CPF/CNPJ calculation
-copy_from_repo '/lib/pessoa_utils.rb'
+copy_from_repo 'lib/pessoa_utils.rb'
 
 # Add a presenter base class
-copy_from_repo '/app/presenters/base_presenter.rb'
+copy_from_repo 'app/presenters/base_presenter.rb'
 
 # Add CPF,CNPJ and Email validators
-copy_from_repo '/app/validators/cpf_validator.rb'
-copy_from_repo '/app/validators/cnpj_validator.rb'
-copy_from_repo '/app/validators/email_validator.rb'
+copy_from_repo 'app/validators/cpf_validator.rb'
+copy_from_repo 'app/validators/cnpj_validator.rb'
+copy_from_repo 'app/validators/email_validator.rb'
