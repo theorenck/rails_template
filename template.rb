@@ -31,9 +31,9 @@ copy_from_repo '/app/validators/cnpj_validator.rb'
 copy_from_repo '/app/validators/email_validator.rb'
 
 # Copy files directly from repo
-def copy_from_repo(filename, opts = {})
-  repo = 'https://raw.github.com/theorenck/template/'
-  repo = opts[:repo] unless opts[:repo].nil?
+def copy_from_repo(filename, options = {})
+  repo = 'https://raw.github.com/theorenck/rails_template/master'
+  repo = options[:repo] unless options[:repo].nil?
   source_filename = filename
   destination_filename = filename
   begin
