@@ -10,11 +10,15 @@ gem 'pg'
 append_to_file  'Gemfile', "\n\n\# Replace jbuilder"
 gem 'active_model_serializers', '~> 0.8.1'
 
-# Use LESS as dynamic stylesheet language for the Rails asset pipeline
-append_to_file  'Gemfile', "\n\n\# Use LESS as dynamic stylesheet language for the Rails asset pipeline"
-gem 'less-rails', '~> 2.5.0'
+# Use a Sass-powered version of Bootstrap
+append_to_file  'Gemfile', "\n\n\# Use a Sass-powered version of Bootstrap"
+gem 'bootstrap-sass', '~> 3.2.0'
 
-# Use Twitter Bootstrap view and layout generator
+# Use to install layout and view generator for bootstrap
+append_to_file  'Gemfile', "\n\n\# Use to install layout and view generator for bootstrap"
+gem 'bootstrap-sass-extras'
+
+# Use a Sass-powered version of font-awesome icon library
 append_to_file  'Gemfile', "\n\n\# Use Twitter Bootstrap view and layout generator"
 gem 'twitter-bootstrap-rails', '~> 3.2.0'
 
@@ -64,9 +68,8 @@ end
 
 run 'bundle install --without production'
 
-# Install and create bootstrap layouts
 run 'rails g bootstrap:install'
-run 'rails g bootstrap:layout application'
+run 'rails g bootstrap:layout application fluid -f'
 
 # Initialize git repo, add and commit
 git :init
