@@ -18,10 +18,6 @@ gem 'bootstrap-sass', '~> 3.2.0'
 append_to_file  'Gemfile', "\n\n\# Use to install layout and view generator for bootstrap"
 gem 'bootstrap-sass-extras'
 
-# Use a Sass-powered version of font-awesome icon library
-append_to_file  'Gemfile', "\n\n\# Use Twitter Bootstrap view and layout generator"
-gem 'twitter-bootstrap-rails', '~> 3.2.0'
-
 # 12factor (Heroku deployment) configuration compliance
 append_to_file  'Gemfile', "\n\n\# 12factor (Heroku deployment) configuration compliance" 
 gem 'rails_12factor', group: :production
